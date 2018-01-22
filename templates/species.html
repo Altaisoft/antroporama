@@ -1,0 +1,40 @@
+{% extends "slide.html" %}
+
+{% block content %}
+<h2>{{ item.title }}<br/><small class="text-muted">{{ item.species }}</small></h2>
+
+<p class="lead mb-0"><strong>Время:</strong> {{ item.time }}</p>
+<p class="lead"><strong>Место:</strong> {{ item.location }}</p>
+
+{% for p in item.description %}
+  <p>{{ p|safe }}</p>
+{% endfor %}
+
+{% if item.features %}
+  <section class="text-center">
+    <div class="container">
+      <div class="row">
+        {% for feature in item.features.primary %}
+          <div class="col-lg-4">
+            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <img class="img-fluid" src="media/features/{{ feature.icon }}.png" />
+              <p class="text-muted">{{ feature.title }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="row">
+        {% for feature in item.features.secondary %}
+          <div class="col-lg-4">
+            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <img class="img-fluid" src="media/features/{{ feature.icon }}.png" />
+              <p class="text-muted">{{ feature.title }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

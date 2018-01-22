@@ -1,0 +1,7 @@
+<div class="row no-gutters">
+  <div class="col-lg-6 text-white showcase-img{% if even %} order-lg-2{% endif %}" style="background-image: url('media/{{ item.image.filename }}');"></div>
+
+  <div class="col-lg-6 my-auto showcase-text{% if even %} order-lg-1{% endif %}">
+    {% block content %}{% endblock %}
+  </div>
+</div>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Antroporama</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/landing-page.min.css" rel="stylesheet">
+
+    <style>
+      .holmes {
+        background: url(/media/sherlock_holmes.jpg) no-repeat bottom right;
+      }
+
+      .showcase-img {
+        background-position-x: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Masthead -->
+    <header class="masthead text-white text-center" style="background-image: url('/media/africa_savannah.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Antroporama<br><small>Панорама эволюции человека</small></h1>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Icons Grid -->
+    <!--section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-screen-desktop m-auto text-primary"></i>
+              </div>
+              <h3>Fully Responsive</h3>
+              <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-layers m-auto text-primary"></i>
+              </div>
+              <h3>Bootstrap 4 Ready</h3>
+              <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-check m-auto text-primary"></i>
+              </div>
+              <h3>Easy to Use</h3>
+              <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section-->
+
+    <section class="showcase">
+      <div class="container-fluid p-0">
+        {% with %}
+          {% set item = human_from_clay %}
+          {% set even = True %}
+          {% include "human_from_clay.html" %}
+        {% endwith %}
+      </div>
+    </section>
+
+    <section class="holmes">
+      <div class="container pb-5 pt-5">
+        {% for item in intro %}
+          <p class="lead">{{ item }}</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Species -->
+    <section class="showcase">
+      <div class="container-fluid p-0">
+        {% for item in species[:3] %}
+          {% with %}
+            {% set even = loop.index is divisibleby 2 %}
+            {% include "species.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">Причины прямохождения</h2>
+
+        <div class="text-left">
+          <p>Как видно, у наших самых ранних предков стремление к прямохождению возникло раньше, чем рост объёма мозга или появление <em>трудовой кисти</em> — то есть, руки, способной к тонкой моторике.</p>
+          <p class="lead">Почему так произошло?</p>
+          <p>Скорее всего, причин было много, но мы приведём самые вероятные.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/savannah_tree.jpg" alt="">
+              <h5>Перемена климата</h5>
+              <div class="text-left">
+                <p class="font-weight-light">Климат Африки становился более сухим, и влажные тропические леса медленно уступали место саваннам.</p>
+
+                <p>А значит, всё больше времени приходилось проводить не на уютной и привычной высокой ветке, а на незнакомой и полной опасностей земле.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/standing_monkey.jpg" alt="">
+              <h5>По земле на двух ногах перемещаться удобнее</h5>
+              <div class="text-left">
+                <ul>
+                  <li>Меньше мешает высокая трава;</li>
+                  <li>есть вероятность раньше заметить угрозу;</li>
+                  <li>жаркое тропическое солнце доставляет меньше неудобств.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/monkey_bearing_fruit.jpg" alt="">
+              <h5>Унести с собой можно больше</h5>
+              <p class="font-weight-light text-left">
+                Самцы, оставив на стоянке детёнышей и самок, отправляются на поиски чего-нибудь съедобного и могут уйти довольно далеко. Нести добычу домой, идя на двух ногах, гораздо удобнее.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-left">
+          <p class="lead">В течение многих и многих тысяч лет обезьянам приходилось всё больше и больше времени проводить на земле, а не на дереве, и те, кто хуже умел это делать, реже выживали и оставляли потомство.</p>
+
+          <p>Таким образом, больше потомства оставляли те, кто лучше справлялся с новыми условиями, и со временем облик животных менялся.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="container-fluid p-0">
+        {% for item in species[3:5] %}
+          {% with %}
+            {% set even = loop.index is divisibleby 2 %}
+            {% include "species.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">Мозг, любовь, мясо и булыжники</h2>
+
+        <div class="text-left">
+          <p>Вспоминая наше предыдущее лирическое отступление, — трудовой кисти у афарских австралопитеков всё ещё нет и они неспособны изготавливать орудия. Но почему они стали так резко умнеть, резко превзойдя по объёму мозга современных шимпанзе?
+        </div>
+
+        <!-- http://elementy.ru/novosti_nauki/431403/Sablezubye_koshki_pomogli_stanovleniyu_cheloveka -->
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/hyene.jpg" alt="">
+              <h5>Хищники</h5>
+              <div class="text-left">
+                <p>Африканская саванна не была безопасным местом: она кишела хищниками. Например, гигантскими гиенами.</p>
+                <ul>
+                  <li>Гиены ведут ночной образ жизни, что, возможно, заставило австралопитеков перейти к дневному;</li>
+                  <li>Гиены не выносливы и плохо бегают, развитое прямохождение стало преимуществом;</li>
+                  <li>Но они довольно глупы, и если вас много, вы умеете громко кричать и кидаться камнями — есть шанс, что вы их отпугнёте.</li>
+                </ul>
+                <p>У австралопитеков не было мощных зубов и физической силы, и оставалось опираться на сообразительность и коллективизм.</p> <!-- http://elementy.ru/novosti_nauki/431403/Sablezubye_koshki_pomogli_stanovleniyu_cheloveka -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/chimpanzee_teeth.png" alt="">
+              <h5>Сниженнная агрессивность</h5>
+              <div class="text-left">
+                <p>На фото — не предок, а современный шимпанзе. Обратите внимание на размер его клыков.</p>
+
+                <p>Клыки нужны шимпанзе не для того, чтоб отбиваться от хищников, а чтоб пугать других шимпанзе и выяснять, кто здесь самый главный.</p>
+
+                <p>Если вы посмотрите на реконструкцию выше, то заметите, что клыки австралопитека гораздо меньше. Что даёт основание предполагать, что уровень агрессии между сородичами у них был существенно ниже.</p>
+                
+                <p>У шимпанзе вражда и конкуренция настолько велики, что крайне редко они способны совместно заниматься общим делом.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/chimpanzee_love.jpg" alt="">
+              <h5>Моногамия</h5>
+              <div class="text-left">
+                <p>Одной из главных причин низкой агрессии у австралопитеков могла быть <em>моногамия</em> — то есть существование семьи, когда самец и самка обитают совместно достаточно долго, чтобы вырастить одного или нескольких детёнышей.</p>
+
+                <ul>
+                  <li>Это приводит к тому, что самцы не занимаются постоянной конкуренцией за самок и не пылают друг к другу убийственной ненавистью.</li>
+                  <li>Лучше организуют совместную деятельность те, у кого мозг крупнее и гибче, кто умеет найти общий язык с соплеменниками. Поэтому самые сообразительные выживают лучше.</li>
+                </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/chimpanzee_child.jpg" alt="">
+              <h5>Забота о потомстве</h5>
+              <div class="text-left">
+                <p>Но возникает другая проблема — детёнышей с большой головой трудно рожать. Поэтому с течением времени оказывается, что детёныши всё чаще рождаются недоношенными, а значит — беспомощными.</p>
+
+                <p>Мы не знаем, насколько самостоятельны были малыши австралопитеков; но человеческие дети сразу после рождения совершенно беспомощны, в отличие от детёнышей шимпанзе, которые способны держаться за шерсть матери и делать первые осмысленные шаги.</p>
+                
+                <p>Самке было бы трудно вырастить такого детёныша в одиночку, — но на помощь приходит его отец и стая в целом.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/megantereon.jpg" alt="">
+              <h5>Мясо</h5>
+              <div class="text-left">
+                <p>Таким образом, самцам было логично оставить своих подруг с детёнышами в укромном месте, а самим отправиться искать еду. Стае нужно много питательной еды.</p>
+
+                <p>Наилучший вариант — мясо. Как его добыть?</p>
+
+                <p>Саблезубые кошки разрывали мясо и внутренности жертв своими клыками, но из-за тех же клыков изрядная часть мяса оставалась на костях.</p>
+
+                <p>Разумеется, на остатки кошачьих пиршеств претендовали грифы и гиены. Но если вы — австралопитек, у вас много товарищей и вы быстро бегаете, то у вас есть шанс успеть первым, урвать добычу и вовремя сбежать.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/media/reasons/monkey_stone.jpg" alt="">
+              <h5>Трудовая деятельность</h5>
+              <div class="text-left">
+                <p>Австралопитеки почти наверняка не были способны к изготовлению орудий труда: их кисть для этого непригодна. Однако после долгих и кропотливых раскопок были найдены кости копытных с довольно непростой посмертной судьбой:</p>
+
+                <ul>
+                  <li>Сначала кость небрежно поцарапали клыками саблезубые кошачьи,</li>
+                  <li>Позже их разгрызали гиены,</li>
+                  <li>Но в промежутке кто-то усердно царапал их острым камнем.</li>
+                </ul>
+
+                <p>Ну а как иначе быстро ободрать мясо с костей, если зубы и когти у вас откровенно не очень? Но зато вы достаточно сообразительны, чтоб подобрать подходящий камешек.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="text-left">
+          <p class="lead">Совместная жизнь, защита от хищников и поиск ресурсов были для австралопитеков залогом выживания. Снижение внутривидовой агрессии и рост мозга стали существенными преимуществами в их нелёгком существовании. А появление мяса в диете сделало возможным их дальнейшее развитие. С точки зрения биологии, на этом этапе наши предки становятся <em>дневными стайными падальщиками</em>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="container-fluid p-0">
+        {% for item in species[5:] %}
+          {% with %}
+            {% set even = loop.index is divisibleby 2 %}
+            {% include "species.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <!--section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">What people are saying...</h2>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/static/img/testimonials-1.jpg" alt="">
+              <h5>Margaret E.</h5>
+              <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/static/img/testimonials-2.jpg" alt="">
+              <h5>Fred S.</h5>
+              <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="/static/img/testimonials-3.jpg" alt="">
+              <h5>Sarah	W.</h5>
+              <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section-->
+
+    <!-- Call to Action -->
+    <section class="call-to-action text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Start Bootstrap 2017. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fa fa-facebook fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fa fa-twitter fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-instagram fa-2x fa-fw"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
