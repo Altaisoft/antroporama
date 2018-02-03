@@ -25,7 +25,7 @@ def index():
     return {
         'species': data.species,
         'human_from_clay': data.human_from_clay,
-        'intro': data.intro,
+        'reasons': data.reasons
     }
 
 

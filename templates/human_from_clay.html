@@ -2,10 +2,5 @@
 
 {% block content %}
   <h2>{{ item.title }}</h2>
-  <p class="lead">{{ item.subtitle }}</p>
-  <ul>
-    {% for li in item.list %}
-      <li>{{ li }}</li>
-    {% endfor %}
-  </ul>
+  {% include "content/clay.html" %}
 {% endblock %}

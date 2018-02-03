@@ -1,0 +1,31 @@
+<section class="testimonials text-center bg-light">
+  <div class="container">
+    <h2 class="mb-5">{{ reason.title }}</h2>
+
+    <div class="text-left">
+      {% for p in reason.intro %}
+        <p>{{ p|safe }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      {% for item in reason.list %}
+      <div class="col-lg-4">
+        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+          <img class="img-fluid rounded-circle mb-3" src="/media/reasons/{{ item.image }}" alt="">
+          <h5>{{ item.title }}</h5>
+          <div class="text-left">
+            {{ item.content|safe }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}      
+    </div>
+
+    <div class="text-left">
+      {% for p in reason.appendix %}
+        <p class="lead">{{ p|safe }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

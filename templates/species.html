@@ -6,9 +6,14 @@
 <p class="lead mb-0"><strong>Время:</strong> {{ item.time }}</p>
 <p class="lead"><strong>Место:</strong> {{ item.location }}</p>
 
-{% for p in item.description %}
-  <p>{{ p|safe }}</p>
-{% endfor %}
+
+{% if item.description is string %}
+  {% include item.description %}
+{% else %}
+  {% for p in item.description %}
+    <p>{{ p|safe }}</p>
+  {% endfor %}
+{% endif %}
 
 {% if item.features %}
   <section class="text-center">
