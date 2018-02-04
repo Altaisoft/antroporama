@@ -1,0 +1,10 @@
+{% macro source(source, classes='', image=True) %}
+    {# Source credit #}
+    <div class="{% if image %}image-source px-3{% else %}d-inline{% endif %}{% if classes %} {{ classes }}{% endif %}">
+        {% if source.url %}
+            <a target="_blank" href="{{ source.url }}">{{ source.name }}</a>
+        {% else %}
+            {{ source.name }}
+        {% endif %}
+    </div>
+{% endmacro %}

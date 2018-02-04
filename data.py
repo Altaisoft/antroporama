@@ -1,15 +1,29 @@
-from models import *
+from collections import namedtuple
+from models import Feature, Image, Source, Credits, Reason
+
+header = Image(
+    'illustrations/savannah_at_dawn_lurssen.jpg',
+    Credits.LURSSEN
+)
+
+footer = Image(
+    'illustrations/space_engine_landscape.jpg',
+    Credits.SPACE_ENGINE
+)
 
 human_from_clay = {
     'title': 'Откуда мы?',
-    'image': Image('human_from_clay.jpg', Credits.MARK_WILEY),
+    'image': Image(
+        'illustrations/human_from_clay.jpg',
+        Credits.MARK_WILEY
+    ),
     'content': 'content/clay.html'
 }
 
 species = [{
     'title': 'Проконсул',
     'species': 'Proconsul heseloni',
-    'image': Image('proconsul.jpg', Credits.EVSEYEV),
+    'image': Image('species/proconsul.jpg', Credits.EVSEYEV),
     'time': '18 — 15 млн лет назад',
     'location': 'Восточная Африка',
     'description': 'content/proconsul.html',
@@ -28,7 +42,7 @@ species = [{
 }, {
     'title': 'Сахелянтроп',
     'species': 'Sahelanthropus tchadensis',
-    'image': Image('sahelanthropus.jpg', Credits.EVSEYEV),
+    'image': Image('species/sahelanthropus.jpg', Credits.EVSEYEV),
         # tumai.jpg
     'time': '7 — 6 млн лет назад',
     'location': 'Центральная Африка, Чад, Торос-Меналла',
@@ -49,7 +63,7 @@ species = [{
 }, {
     'title': 'Ардипитек рамидус',
     'species': 'Ardipithecus ramidus',
-    'image': Image('ardipithecus.jpg', Credits.EVSEYEV),
+    'image': Image('species/ardipithecus.jpg', Credits.EVSEYEV),
     'time': '4.4 млн лет назад',
     'location': 'Восточная Африка, Эфиопия',
     'description': 'content/ardipithecus.html',
@@ -69,7 +83,7 @@ species = [{
 }, {
     'title': 'Австралопитек анамский',
     'species': 'Australopithecus anamensis',
-    'image': Image('anamensis.jpg', Credits.OSIPOV),
+    'image': Image('species/anamensis.jpg', Credits.OSIPOV),
     'time': '4.2 — 3.9 млн лет назад',
     'location': 'Восточная Африка, Кения',
     'description': 'content/anamensis.html',
@@ -89,7 +103,7 @@ species = [{
 }, {
     'title': 'Австралопитек афарский',
     'species': 'Australopithecus afarensis',
-    'image': Image('afarensis.jpg', Credits.EVSEYEV),
+    'image': Image('species/afarensis.jpg', Credits.EVSEYEV),
     'time': '4.0 — 2.5 млн лет назад',
     'location': 'Место: Восточная Африка, Кения, Танзания, Эфиопия',
     'description': 'content/afarensis.html',
@@ -112,7 +126,7 @@ species = [{
     'species': 'Homo habilis',
     'time': '2.3 — 1.5 млн лет назад',
     'location': 'Восточная и Южная Африка',
-    'image': Image('habilis.jpg', Credits.EVSEYEV),
+    'image': Image('species/habilis.jpg', Credits.EVSEYEV),
     'description': 'content/habilis.html',
     'features': {
         'primary': [
@@ -133,7 +147,7 @@ species = [{
     'species': 'Homo ergaster',
     'time': '1.8 — 1.4 млн лет назад',
     'location': 'Кения, Танзания, Грузия',
-    'image': Image('ergaster.jpg', Credits.EVSEYEV),
+    'image': Image('species/ergaster.jpg', Credits.EVSEYEV),
     'description': 'content/ergaster.html',
     'features': {
         'primary': [
@@ -154,7 +168,7 @@ species = [{
     'species': 'Homo erectus',
     'time': '1.5 млн — 400 тыс лет назад',
     'location': 'Африка, Южная Европа, Индонезия, Ява, Китай и др',
-    'image': Image('erectus1.jpg', Credits.EVSEYEV),
+    'image': Image('species/erectus1.jpg', Credits.EVSEYEV),
     'description': 'content/erectus.html',
     'features': {
         'primary': [
@@ -175,7 +189,7 @@ species = [{
 }, {
     'title': 'Человек гейдельбергский',
     'species': 'Homo heidelbergensis',
-    'image': Image('heidelbergensis1.jpg', Credits.EVSEYEV),
+    'image': Image('species/heidelbergensis1.jpg', Credits.EVSEYEV),
     'time': '800 — 130 тыс лет назад',
     'location': 'Африка, Европа и др',
     'description': 'content/heidelbergensis.html',
@@ -204,7 +218,7 @@ species = [{
     'species': 'Homo neanderthalensis',
     'time': '130 — 28 тыс лет назад',
     'location': 'Европа и Западная Азия',
-    'image': Image('neanderthalensis1.jpg', Credits.EVSEYEV),
+    'image': Image('species/neanderthalensis1.jpg', Credits.EVSEYEV),
     'description': 'content/neanderthalensis.html',
     'features': {
         'primary': [
@@ -226,7 +240,7 @@ species = [{
     'species': 'Homo sapiens sapiens',
     'time': '100 тыс лет назад — ...',
     'location': 'Земля и околоземное пространство',
-    'image': Image('sapiens.jpg', Credits.EVSEYEV),
+    'image': Image('species/sapiens.jpg', Credits.EVSEYEV),
     'description': 'content/sapiens.html',
     'sources': [
         ''
@@ -242,7 +256,6 @@ species = [{
     }
 }]
 
-Reason = namedtuple('Reason', ['title', 'image', 'content'])
 
 reasons = {
     'walking': {
@@ -255,14 +268,21 @@ reasons = {
             'Скорее всего, причин было много, но мы приведём самые вероятные.'
         ],
         'list': [Reason(
-            image='savannah_tree.jpg',
+            image=Image(
+                filename='walking/savannah_tree.jpg',
+                author=Credits.ETOSHA,
+                thumb='walking/savannah_tree_thumb.jpg'
+            ),
             title='Перемена климата и сокращение лесов',
             content=
                 '''<p>Климат Африки становился суше, и дождевые тропические леса медленно, но неуклонно сокращались, уступая место саваннам.</p>
                 <p>А значит, всё больше времени приходилось проводить не на уютной и привычной высокой ветке, а на земле, полной опасностей.</p>
                 '''
         ), Reason(
-            image='standing_monkey.jpg',
+            image=Image(
+                filename='walking/standing_monkey.jpg',
+                thumb='walking/standing_monkey_thumb.jpg'
+            ),
             title='По земле на двух ногах перемещаться удобнее',
             content=
                 '''
@@ -273,7 +293,11 @@ reasons = {
                 </ul>
                 '''
         ), Reason(
-            image='monkey_bearing_fruit.jpg',
+            image=Image(
+                filename='walking/monkey_food.jpg',
+                author=Credits.GOODALL,
+                thumb='walking/monkey_food_thumb.jpg',
+            ),
             title='Унести с собой можно больше',
             content='<p>Если ваша подруга с детёнышем ждёт вас в укромном месте, а вы, уйдя далеко в поисках еды, наткнулись на кучу вкусных орехов, то идя домой на двух ногах — вы утащите их больше.</p>'
         )],
@@ -288,7 +312,10 @@ reasons = {
             '<p>Вспоминая наше предыдущее лирическое отступление, — трудовой кисти у афарских австралопитеков всё ещё нет, орудия изготавливать они пока неспособны.</p><p>Но почему они стали так резко умнеть, превзойдя уже по объёму мозга современных шимпанзе?</p>',
         ],
         'list': [Reason(
-            image='hyene.jpg',
+            image=Image(
+                filename='brain/hyene.jpg',
+                thumb='brain/hyene_thumb.jpg'
+            ),
             title='Хищники',
             content=
                 '''<p>Африканская саванна не была безопасным местом: она кишела хищниками. Например, гигантскими гиенами.</p>
@@ -300,7 +327,10 @@ reasons = {
                 <p>У австралопитеков не было мощных зубов и физической силы, и оставалось опираться на сообразительность и коллективизм.</p>
             '''
         ), Reason(
-            image='chimpanzee_teeth.png',
+            image=Image(
+                filename='brain/chimpanzee_teeth.jpg',
+                thumb='brain/chimpanzee_teeth_thumb.png'
+            ),
             title='Сниженнная агрессивность',
             content='''
                 <p>На фото — не предок, а современный шимпанзе. Обратите внимание на размер его клыков.
@@ -312,7 +342,11 @@ reasons = {
                 <p>В стаях шимпанзе вражда и конкуренция настолько накалены, что крайне редко они способны совместно заниматься общим делом.
             '''
         ), Reason(
-            image='chimpanzee_love.jpg',
+            image=Image(
+                filename='brain/kissing.jpg',
+                author=Credits.REUTERS,
+                thumb='brain/kissing_thumb.jpg',
+            ),
             title='Моногамия',
             content='''<p>Одной из главных причин низкой агрессии у австралопитеков могла быть моногамия — то есть существование семьи, когда самец и самка обитают совместно достаточно долго, чтобы вырастить одного или нескольких детёнышей.</p>
                 <p>
@@ -320,7 +354,11 @@ reasons = {
                 </p>
             '''
         ), Reason(
-            image='chimpanzee_child.jpg',
+            image=Image(
+                filename='brain/chimpanzee_child.jpg',
+                thumb='brain/chimpanzee_child_thumb.jpg',
+                author=Credits.BBC
+            ),
             title='Забота о потомстве',
             content='''
                 <p>Но возникает другая проблема — детёнышей с большой головой трудно рожать. Поэтому с течением времени оказывается, что детёныши всё чаще рождаются недоношенными, а значит — беспомощными.
@@ -331,7 +369,11 @@ reasons = {
             '''
         ), Reason(
             title='Мясо',
-            image='megantereon.jpg',
+            image=Image(
+                filename='brain/megantereon.jpg',
+                thumb='brain/megantereon_thumb.jpg',
+                author=Credits.ANTON
+            ),
             content='''
                 <p>Таким образом, самцам было логично оставить своих подруг с детёнышами в укромном месте, а самим отправиться искать еду. Стае нужно много питательной еды.
 
@@ -343,7 +385,11 @@ reasons = {
             '''
         ), Reason(
             title='Трудовая деятельность',
-            image='monkey_stone.jpg',
+            image=Image(
+                filename='brain/monkey_stone.jpg',
+                thumb='brain/monkey_stone_thumb.jpg',
+                author=Credits.BBC_STONE
+            ),
             content='''
                 <p>Австралопитеки почти наверняка не были способны к изготовлению орудий труда: их кисть для этого непригодна. Однако после <a href="http://antropogenez.ru/single-news/article/10/">долгих и кропотливых раскопок и исследований</a> были найдены кости копытных с довольно непростой посмертной судьбой:
                 
@@ -353,7 +399,7 @@ reasons = {
                 <li>Но в промежутке кто-то усердно их царапал острым камнем.
                 </ul>
             
-                <p>Ну а как иначе быстро ободрать мясо с костей, если зубы и когти у вас откровенно не очень? Но зато вы достаточно сообразительны, чтоб подобрать подходящий камешек.
+                <p>Ну а как иначе быстро ободрать мясо с костей, если зубы и когти у вас откровенно не очень? Но зато вы достаточно сообразительны, чтоб подобрать подходящий камешек.</p>
             '''
         )],
         'appendix': [
@@ -365,14 +411,14 @@ reasons = {
         'title': 'Труд сделал обезьяну человеком?',
         'list': [Reason(
             title='Олдувайская культура',
-            image='oldowan.jpg',
+            image=Image('oldowan.jpg'),
             content='''
                 <p>Олдувайское орудие — это зачастую всего лишь камень, <a href="http://antropogenez.ru/term/205/">расколотый пополам</a> или обколотый с нескольких сторон с целью получить острый край.</p>
                 <p>Это звучит просто, но в сравнении с австралопитеками было серьёзным шагом вперёд, который отразился даже на строении кисти, ставшем ближе к современному.</p>
             '''
         ), Reason(
             title='Всеядность',
-            image='bone.jpg',
+            image=Image('bone.jpg'),
             content='''
                 <p><a href="https://www.britannica.com/topic/Homo-habilis">Установлено</a>, что доля мяса в рационе <em>Homo Habilis</em> была существенной. Известно, что он был падальщиком, поскольку сам убить крупных животных, которыми питался, он был не в состоянии.</p>
                 
@@ -380,7 +426,7 @@ reasons = {
             '''
         ), Reason(
             title='Рост мозга',
-            image='habilis_skull.jpg',
+            image=Image('habilis_skull.jpg'),
             content='''
                 <p>Нежелание дичи быть съеденной и конкуренция с другими группами своего же вида приводили к тому, что первым людям было выгодно быть умными и сообразительными.
                 <p>Им это помогало лучше выживать и лучше питаться, а питание, в свою очередь, позволяло наращивать мозг ещё активнее.
@@ -392,20 +438,24 @@ reasons = {
         'title': 'Первые в Азии',
         'list': [Reason(
             title='Люди из Дманиси',
-            image='ergaster_map.png',
+            image=Image('ergaster_map.png'),
             content='''
                 <p>Очевидно, людей в Африке стало уже достаточно много, и люди стали уже достаточно смелы, чтобы <a href="http://antropogenez.ru/no_cache/locations-map/hominid/21/">пускаться в дальние путешествия</a>. Мы не знаем, как далеко ушли <em>Homo ergaster</em>, но до Грузии они точно добрались, о чём говорят находки в <a href="http://antropogenez.ru/location/78/">Дманиси</a>.
             '''
         ), Reason(
             title='На лицо ужасные',
-            image='georgicus.jpg',
+            image=Image(
+                filename='georgia/georgicus.jpg',
+                thumb='georgia/georgicus_thumb.jpg',
+                author=Credits.EVSEYEV
+            ),
             content='''
                 <p>В Дманиси найдена целая коллекция черепов и скелетов от пяти людей разных полов и возрастов, это уникальная находка чрезвычайно хорошей сохранности.
                 <p>Интересно, что мозг у дманисцев довольно мал относительно других известных <em>Homo ergaster</em> — до 546 см³, а их внешность довольно брутальна и архаична. На фото — реконструкция облика обладателя пятого черепа, известного под индексом D4500.
             '''
         ), Reason(
             title='Добрые внутри',
-            image='dmanisi.jpg',
+            image=Image('dmanisi.jpg'),
             content='''
                 <p><a href="http://antropogenez.ru/fossil/451/">Этот череп</a> принадлежал <a href="http://antropogenez.ru/article/738/">старику</a>, дожившему не менее чем до восьмидесяти лет, о чём говорят швы на черепе, — что в те времена явление исключительно редкое.
                 
@@ -422,7 +472,7 @@ reasons = {
         '''],
         'list': [Reason(
             title='Ашельская культура',
-            image='biface.jpg',
+            image=Image('biface.jpg'),
             content='''
                 <p>Ашельская культура характерна <em>ручными рубилами</em>, или <em>бифасами</em>. В отличие от олдувайских орудий, ашельское рубило представляло собой не просто расколотый камень, а обрабатывалось с разных сторон с целью достижения определённой формы.
 
@@ -430,7 +480,7 @@ reasons = {
             '''
         ), Reason(
             title='Охота',
-            image='shoningen.jpg',
+            image=Image('shoningen.jpg'),
             content='''
                 <p>Обработка дерева в том числе нужна была эректусам для того, чтоб изготавливать деревянные копья, конец которых был заострён и <a href="http://antropogenez.ru/zveno-single/127/">обожжён для прочности</a>. Остатки таких копий были найдены в рёбрах слонов.
 
@@ -438,7 +488,7 @@ reasons = {
             '''
         ), Reason(
             title='Мозг',
-            image='sinantropus.jpg',
+            image=Image('sinantropus.jpg'),
             content='''
                 <p>Такое изменение поведения не могло не сказаться на строении мозга. Его объём уже почти достиг современных средних значений. Рельеф, видный на отпечатках черепов <em>(эндокранах)</em> свидетельствует, что:</p>
                 <ul>
@@ -456,7 +506,7 @@ reasons = {
         '''],
         'list': [Reason(
             title='И это вы называете разумом?',
-            image='mind.jpg',
+            image=Image('mind.jpg'),
             content='''
                 <p>Называя себя, несмотря на всё перечисленное выше, разумными, мы определяем наше главное качество и отличительную черту, которой мы бы хотели гордиться.
 
@@ -466,7 +516,7 @@ reasons = {
             '''
         ), Reason(
             title='Зачем?',
-            image='earth.jpg',
+            image=Image('earth.jpg'),
             content='''
                 <p>Несмотря на все неоспоримые достижения, мы не решили ещё массу проблем и не нашли ответов на массу вопросов:
                 <ul>
@@ -481,7 +531,7 @@ reasons = {
             '''
         ), Reason(
             title='И что потом?',
-            image='mars.jpg',
+            image=Image('mars.jpg'),
             content='''
                 И не стоит забывать, что Земля, в конце концов, — всего лишь крохотный уголок огромной Вселенной.
 

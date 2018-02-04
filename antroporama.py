@@ -25,7 +25,9 @@ def index():
     return {
         'species': data.species,
         'human_from_clay': data.human_from_clay,
-        'reasons': data.reasons
+        'reasons': data.reasons,
+        'header': data.header,
+        'footer': data.footer,
     }
 
 
@@ -33,5 +35,6 @@ if __name__ == '__main__':
     run(
         app=app,
         host='0.0.0.0',
-        port=8000
+        port=8000,
+        debug=True
     )

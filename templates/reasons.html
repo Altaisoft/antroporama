@@ -12,17 +12,27 @@
       {% for item in reason.list %}
       <div class="col-lg-4">
         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-          <img class="img-fluid rounded-circle mb-3" src="/media/reasons/{{ item.image }}" alt="">
+          <a
+            data-toggle="lightbox"
+            href="/media/reasons/{{ item.image.filename }}"
+          >
+            <img class="img-fluid rounded-circle mb-3" src="/media/reasons/{{ item.image.thumb or item.image.filename }}" alt="">
+          </a>
+          
           <h5>{{ item.title }}</h5>
           <div class="text-left">
             {{ item.content|safe }}
+
+            {% if item.image.author %}
+              <small>Image: {{ macros.source(item.image.author, image=False) }}</small>
+            {% endif %}
           </div>
         </div>
       </div>
-      {% endfor %}      
+      {% endfor %}
     </div>
 
-    <div class="text-left">
+    <div class="text-left mt-3">
       {% for p in reason.appendix %}
         <p class="lead">{{ p|safe }}</p>
       {% endfor %}

@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -29,58 +31,39 @@
       .showcase-img {
         background-position-x: center;
       }
+
+      .call-to-action {
+        background-image: url(/media/{{ footer.filename }});
+      }
+
+      .image-source a {
+        color: white;
+      }
+
+      .image-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%; width: 100%;
+      }
     </style>
   </head>
 
   <body>
     <!-- Masthead -->
-    <header class="masthead text-white text-center" style="background-image: url('/media/africa_savannah.jpg')">
-      <div class="overlay"></div>
+    <header class="masthead text-white text-center" style="background-image: url('/media/{{ header.filename }}')">
+      <div class="overlay">
+        {{ macros.source(header.author, 'pull-right') }}
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">Antroporama<br><small>Кратко об эволюции человека</small></h1>
           </div>
-
-          </div>
+        </div>
         </div>
       </div>
     </header>
-
-    <!-- Icons Grid -->
-    <!--section class="features-icons bg-light text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-screen-desktop m-auto text-primary"></i>
-              </div>
-              <h3>Fully Responsive</h3>
-              <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-layers m-auto text-primary"></i>
-              </div>
-              <h3>Bootstrap 4 Ready</h3>
-              <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-check m-auto text-primary"></i>
-              </div>
-              <h3>Easy to Use</h3>
-              <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section-->
 
     <section class="showcase">
       <div class="container-fluid p-0">
@@ -191,7 +174,9 @@
 
     <!-- Call to Action -->
     <section class="call-to-action text-white text-center">
-      <div class="overlay"></div>
+      <div class="overlay">
+        {{ macros.source(footer.author, 'pull-left') }}
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
@@ -252,6 +237,14 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox();
+      });
+    </script>
 
   </body>
 
