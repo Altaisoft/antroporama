@@ -32,19 +32,9 @@ class Credits:
     OSIPOV = Source('Oleg Osipov', None)
 
     # Illustrations
-    LURSSEN = Source(
-        'Jean Lurssen',
-        'http://the-watercolorist.blogspot.ru/2011/05/savannah-dawn.html'
-    )
     MARK_WILEY = Source(
         'Mark Wiley',
         'http://www.dpchallenge.com/image.php?IMAGE_ID=1052201'
-    )
-
-    SPACE_ENGINE = Source(
-        'Space Engine Project',
-        'http://spaceengine.org/'
-        # https://vk.com/photo-40735526_420366748?all=1
     )
 
     ETOSHA = Source(

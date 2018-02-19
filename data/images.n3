@@ -1,0 +1,28 @@
+@base <http://antroporama.iolanta.tech/> .
+@prefix : <http://antroporama.iolanta.tech/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+:header a :Image ;
+    :href <media/illustrations/savannah_at_dawn_lurssen.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Jean Lurssen" ;
+        rdfs:seeAlso <http://the-watercolorist.blogspot.ru/2011/05/savannah-dawn.html>
+    ] .
+
+:footer a :Image ;
+    :href <media/illustrations/space_engine_landscape.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Space Engine Project" ;
+        rdfs:seeAlso <http://spaceengine.org>
+    ] .
+
+:human_from_clay a :Image ;
+    :href <media/illustrations/human_from_clay.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Mark Wiley" ;
+        rdfs:seeAlso <http://www.dpchallenge.com/image.php?IMAGE_ID=1052201>
+    ] .

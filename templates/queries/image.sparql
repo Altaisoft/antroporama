@@ -1,0 +1,13 @@
+PREFIX : <http://antroporama.iolanta.tech/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?href ?author ?link
+WHERE {
+    ?node :href ?href .
+    ?node :credit ?credit .
+
+    ?credit a :Credit .
+    ?credit rdfs:label ?author .
+    ?credit rdfs:seeAlso ?link .
+    {{ subquery }}
+}

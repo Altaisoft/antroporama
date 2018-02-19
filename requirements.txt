@@ -1,3 +1,5 @@
 bottle
 Jinja2
 dataclasses
+rdflib
+ipython

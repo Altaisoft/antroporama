@@ -1,24 +1,128 @@
+import os.path
 from collections import namedtuple
 from models import Feature, Image, Source, Credits, Reason
+import rdflib
 
-header = Image(
-    'illustrations/savannah_at_dawn_lurssen.jpg',
-    Credits.LURSSEN
+from jinja2 import Environment, PackageLoader, select_autoescape
+env = Environment(
+    loader=PackageLoader('antroporama', 'templates'),
+    autoescape=select_autoescape(['html', 'xml'])
 )
 
-footer = Image(
-    'illustrations/space_engine_landscape.jpg',
-    Credits.SPACE_ENGINE
-)
-
-human_from_clay = {
-    'title': 'Откуда мы?',
-    'image': Image(
-        'illustrations/human_from_clay.jpg',
-        Credits.MARK_WILEY
-    ),
-    'content': 'content/clay.html'
+NS = {
+    None: 'http://antroporama.iolanta.tech/',
+    'rdfs': 'http://www.w3.org/2000/01/rdf-schema#'
 }
+
+GRAPH_LIST = [
+    'antroporama.n3',
+    'images.n3',
+    'species.n3',
+]
+
+def get_graph():
+    graph = rdflib.Graph()
+    
+    for filename in GRAPH_LIST:
+        with open(os.path.join('data', filename), 'r') as f:
+            graph.parse(data=f.read(), format='n3')
+
+    return graph
+
+
+def shorten(value):
+    for ns in NS.values():
+        value = value.replace(ns, '')
+
+    return value
+
+
+def get_image(name, graph, subquery=None):
+    if subquery is None:
+        subquery = 'FILTER(?node = :{})'.format(
+            name
+        )
+    
+    r, = list(query(
+        graph=graph,
+        template_name='image',
+        subquery=subquery
+    ))
+
+    href, name, url = map(str, r)
+
+    return {
+        'href': href,
+        'author': {
+            'name': name,
+            'url': url
+        }
+    }
+
+
+def about(element, graph):
+    template = env.get_template('queries/about.sparql')
+    
+    (label, comment), = list(graph.query(template.render(
+        node=element
+    )))
+
+    return {
+        'label': label,
+        'comment': comment
+    }
+
+
+def query(graph, template_name, **context):
+    """Render a SPARQL template and run it"""
+    template = env.get_template(os.path.join(
+        'queries',
+        '{}.sparql'.format(template_name)
+    ))
+
+    return graph.query(template.render(**context))
+
+
+def get_species(name, graph):
+    species = {
+        shorten(str(key)): str(value)
+        for key, value in query(
+            graph=graph,
+            template_name='species',
+            name=name
+        )
+    }
+
+    species.update({
+        'image': get_image(
+            None, graph,
+            subquery=':{} :image ?node'.format(name)
+        )
+    })
+
+    return species
+
+
+def get_species_list(graph):
+    raise Exception(get_species('proconsul', graph))
+
+
+def get_data():
+    graph = get_graph()
+
+    species = get_species_list(graph)
+
+    return {
+        'header': get_image('header', graph),
+        'footer': get_image('footer', graph),
+        'about': about('http://antroporama.iolanta.tech', graph),
+        'human_from_clay': {
+            'title': 'Откуда мы?',
+            'image': get_image('human_from_clay', graph),
+            'content': 'content/clay.html'
+        },
+    }
+
 
 species = [{
     'title': 'Проконсул',
@@ -329,7 +433,8 @@ reasons = {
         ), Reason(
             image=Image(
                 filename='brain/chimpanzee_teeth.jpg',
-                thumb='brain/chimpanzee_teeth_thumb.png'
+                thumb='brain/chimpanzee_teeth_thumb.png',
+                author=Credits.WIKIMEDIA
             ),
             title='Сниженнная агрессивность',
             content='''
@@ -339,7 +444,7 @@ reasons = {
 
                 <p>Если вы посмотрите на реконструкцию австралопитека выше, то заметите, что его клыки гораздо меньше. Что даёт основание предполагать сравнительно небольшой уровень агрессии между австралопитеками.
 
-                <p>В стаях шимпанзе вражда и конкуренция настолько накалены, что крайне редко они способны совместно заниматься общим делом.
+                <p>В стаях шимпанзе вражда и конкуренция настолько накалены, что крайне редко они способны совместно заниматься общим делом.</p>
             '''
         ), Reason(
             image=Image(
@@ -451,17 +556,21 @@ reasons = {
             ),
             content='''
                 <p>В Дманиси найдена целая коллекция черепов и скелетов от пяти людей разных полов и возрастов, это уникальная находка чрезвычайно хорошей сохранности.
-                <p>Интересно, что мозг у дманисцев довольно мал относительно других известных <em>Homo ergaster</em> — до 546 см³, а их внешность довольно брутальна и архаична. На фото — реконструкция облика обладателя пятого черепа, известного под индексом D4500.
+                <p>Интересно, что мозг у дманисцев довольно мал относительно других известных <em>Homo ergaster</em> — до 546 см³, а их внешность довольно брутальна и архаична. На фото — реконструкция облика обладателя пятого черепа, известного под индексом D4500.</p>
             '''
         ), Reason(
             title='Добрые внутри',
-            image=Image('dmanisi.jpg'),
+            image=Image(
+                filename='georgia/dmanisi_d3444.jpg',
+                thumb='georgia/dmanisi_d3444_thumb.jpg',
+                author=Credits.WIKIMEDIA
+            ),
             content='''
-                <p><a href="http://antropogenez.ru/fossil/451/">Этот череп</a> принадлежал <a href="http://antropogenez.ru/article/738/">старику</a>, дожившему не менее чем до восьмидесяти лет, о чём говорят швы на черепе, — что в те времена явление исключительно редкое.
+                <p>А <a href="http://antropogenez.ru/fossil/126/">четвёртый череп</a> принадлежал старику.
                 
                 <p>Задолго до смерти он потерял все зубы, так что альвеолы их успели полностью зарасти.
 
-                <p>Однако он продолжал жить, что говорит о заботе соплеменников: за стариком ухаживали и кормили его. Это самый древний доказанный пример альтруизма и любви к ближним среди наших предков, датируемый приблизительно <em>1.77 млн лет назад</em>.
+                <p>Однако он продолжал жить, что говорит о заботе соплеменников: за стариком ухаживали и кормили его. Это самый древний доказанный пример альтруизма и любви к ближним среди наших предков, датируемый приблизительно <em>1.77 млн лет назад</em>.</p>
             '''
         )]
     },

@@ -1,0 +1,54 @@
+@base <http://antroporama.iolanta.tech/> .
+@prefix : <http://antroporama.iolanta.tech/> .
+@prefix media: <http://antroporama.iolanta.tech/media/> .
+
+@prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://antroporama.iolanta.tech> rdfs:label "Antroporama" ;
+    rdfs:comment "Кратко об эволюции человека" .
+
+
+:Credit a rdfs:Class ;
+    rdfs:label "Credit" ;
+    rdfs:comment "The source/author of work we are using" .
+
+
+:Image a rdfs:Class ;
+    rdfs:label "Image" ;
+    rdfs:comment "An image with its credit" .
+
+
+:credit a rdfs:Property ;
+    rdfs:label "Credits" ;
+    rdfs:range :Credit .
+
+
+:Species a rdfs:Class ;
+    rdfs:label "A biological species" .
+
+
+:TimeRange a rdfs:Class ;
+    rdfs:label "A time range" .
+
+
+:time-range a rdfs:Property ;
+    rdfs:domain :Species ;
+    rdfs:range :TimeRange .
+
+
+:Brain a rdfs:Class ;
+    rdfs:label "Объём мозга" .
+
+
+:min-volume a rdfs:Property ;
+    rdfs:domain :Brain ;
+    rdfs:range xsd:integer .
+
+
+:max-volume a rdfs:Property ;
+    rdfs:domain :Brain ;
+    rdfs:range xsd:integer .

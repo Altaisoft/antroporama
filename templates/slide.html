@@ -1,7 +1,6 @@
 <div class="row no-gutters">
-  <div class="col-lg-6 text-white showcase-img{% if even %} order-lg-2{% endif %}" style="background-image: url('media/{{ item.image.filename }}');">
+  <div class="col-lg-6 text-white showcase-img{% if even %} order-lg-2{% endif %}" style="background-image: url('{{ item.image.href or '/media/' + item.image.filename }}');">
     {{ macros.source(item.image.author, 'pull-right') }}
-    <a data-toggle="lightbox" class="image-link" href="/media/{{ item.image.filename }}"></a>
   </div>
 
   <div class="col-lg-6 my-auto showcase-text{% if even %} order-lg-1{% endif %}">

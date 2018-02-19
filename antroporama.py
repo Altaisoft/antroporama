@@ -22,13 +22,14 @@ def serve_media(filepath):
 @app.route('/')
 @jinja2_view('index.html', template_lookup=['templates'])
 def index():
-    return {
+    context = {
         'species': data.species,
-        'human_from_clay': data.human_from_clay,
-        'reasons': data.reasons,
-        'header': data.header,
-        'footer': data.footer,
+        'reasons': data.reasons
     }
+
+    context.update(data.get_data())
+
+    return context
 
 
 if __name__ == '__main__':
