@@ -1,10 +1,15 @@
 from typing import Type, Optional
-from .storages.base import CollectionStorage
+from .storages.base import CollectionStorage, MappingStorage
 
 
 class Collection:
     storage: Optional[CollectionStorage]
     model: Type
 
-    def all(self):
-        return self.storage.all()
+
+class Mapping:
+    storage: Optional[MappingStorage]
+    model: Type
+
+    def get(self, key):
+        return self.storage.get(key)

@@ -1,5 +1,5 @@
 from typing import Optional
-from aristo.models import Collection
+from aristo.models import Mapping
 
 
 class Credit:
@@ -15,5 +15,5 @@ class Image:
     thumbnail: Optional[str]
 
 
-class Images(Collection):
+class Images(Mapping):
     model = Image

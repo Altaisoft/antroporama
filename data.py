@@ -99,6 +99,7 @@ GRAPH_LIST = [
     'species.n3',
 ]
 
+
 def get_graph():
     graph = rdflib.Graph()
     
