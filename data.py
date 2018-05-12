@@ -184,13 +184,13 @@ def get_species(name, graph):
 
 
 def get_species_list(graph):
-    raise Exception(get_species('proconsul', graph))
+    return get_species('proconsul', graph)
 
 
 def get_data():
     graph = get_graph()
 
-    species = get_species_list(graph)
+    # species = get_species_list(graph)
 
     return {
         'header': get_image('header', graph),
