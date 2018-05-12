@@ -19,6 +19,13 @@ def serve_media(filepath):
     ))
 
 
+@app.route('/data/<filepath:path>')
+def serve_data(filepath):
+    return static_file(filepath, root=os.path.join(
+        os.path.dirname(__file__), 'data'
+    ))
+
+
 @app.route('/')
 @jinja2_view('index.html', template_lookup=['templates'])
 def index():

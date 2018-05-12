@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,233 +24,247 @@
     <link href="/static/css/landing-page.min.css" rel="stylesheet">
 
     <style>
-      .masthead {
-        height: 100vh !important;
-      }
+        .masthead {
+            height: 100vh !important;
+        }
 
-      .holmes {
-        background: url(/media/sherlock_holmes.jpg) no-repeat bottom right;
-      }
+        .holmes {
+            background: url(/media/sherlock_holmes.jpg) no-repeat bottom right;
+        }
 
-      .showcase-img {
-        background-position-x: center;
-      }
+        .showcase-img {
+            background-position-x: center;
+        }
 
-      .call-to-action {
-        background-image: url({{ footer.href }});
-      }
+        .call-to-action {
+            background-image: url({{ footer.href }});
+        }
 
-      .image-source a {
-        color: white;
-      }
+        .image-source a {
+            color: white;
+        }
 
-      .image-link {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-      }
+        .image-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
-    <!-- Masthead -->
-    <header class="masthead text-white text-center" style="background-image: url({{ header.href }})">
-      <div class="overlay">
-        {{ macros.source(header.author, 'pull-right') }}
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">{{ about.label }}<br><small>{{ about.comment }}</small></h1>
-          </div>
-        </div>
-        </div>
-      </div>
-    </header>
+<body>
+{% raw %}
+    <div id="header">
+        <header class="masthead text-white text-center" v-bind:style="background">
+            <div class="overlay">
+                <div class="image-source px-3 pull-right">
+                    <a target="_blank" v-bind:href="image.credit.seeAlso">
+                        {{ image.credit.label }}
+                    </a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <h1 class="mb-5">
+                            {{ heading }}<br>
+                            <small>{{ subheading }}</small>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+{% endraw %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% with %}
-          {% set item = human_from_clay %}
-          {% set even = True %}
-          {% include "human_from_clay.html" %}
+            {% set item = human_from_clay %}
+            {% set even = True %}
+            {% include "human_from_clay.html" %}
         {% endwith %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="holmes">
-      <div class="container pb-5 pt-5">
+<section class="holmes">
+    <div class="container pb-5 pt-5">
         {% include "content/intro.html" %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Species -->
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<!-- Species -->
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[:3] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.walking %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.walking %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[3:5] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.brain %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.brain %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[5:6] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.labor %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.labor %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[6:7] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.georgia %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.georgia %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[7:8] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.erectus %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.erectus %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <section class="showcase">
-      <div class="container-fluid p-0">
+<section class="showcase">
+    <div class="container-fluid p-0">
         {% for item in species[8:] %}
-          {% with %}
-            {% set even = loop.index is divisibleby 2 %}
-            {% include "species.html" %}
-          {% endwith %}
+            {% with %}
+                {% set even = loop.index is divisibleby 2 %}
+                {% include "species.html" %}
+            {% endwith %}
         {% endfor %}
-      </div>
-    </section>
+    </div>
+</section>
 
-    {% with reason = reasons.future %}
-      {% include "reasons.html" %}
-    {% endwith %}
+{% with reason = reasons.future %}
+    {% include "reasons.html" %}
+{% endwith %}
 
-    <!-- Call to Action -->
-    <section class="call-to-action text-white text-center">
-      <div class="overlay">
+<!-- Call to Action -->
+<section class="call-to-action text-white text-center">
+    <div class="overlay">
         {{ macros.source(footer.author, 'pull-left') }}
-      </div>
-      <div class="container">
+    </div>
+    <div class="container">
         <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h2 class="mb-4">Но...<br/> <small>это уже совсем другая история.</small></h2>
-          </div>
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4">Но...<br/> <small>это уже совсем другая история.</small></h2>
+            </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer bg-light">
-      <div class="container">
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
         <div class="row">
-          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-            <!--ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <a href="#">About</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-            </ul-->
-            
-            <p class="text-muted small mb-4 mb-lg-0">&copy; A. Scherbakov 2018</p>
-          </div>
-          <!--div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item mr-3">
-                <a href="#">
-                  <i class="fa fa-facebook fa-2x fa-fw"></i>
-                </a>
-              </li>
-              <li class="list-inline-item mr-3">
-                <a href="#">
-                  <i class="fa fa-twitter fa-2x fa-fw"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-instagram fa-2x fa-fw"></i>
-                </a>
-              </li>
-            </ul>
-          </div-->
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <!--ul class="list-inline mb-2">
+                  <li class="list-inline-item">
+                    <a href="#">About</a>
+                  </li>
+                  <li class="list-inline-item">&sdot;</li>
+                  <li class="list-inline-item">
+                    <a href="#">Contact</a>
+                  </li>
+                  <li class="list-inline-item">&sdot;</li>
+                  <li class="list-inline-item">
+                    <a href="#">Terms of Use</a>
+                  </li>
+                  <li class="list-inline-item">&sdot;</li>
+                  <li class="list-inline-item">
+                    <a href="#">Privacy Policy</a>
+                  </li>
+                </ul-->
+
+                <p class="text-muted small mb-4 mb-lg-0">&copy; A. Scherbakov 2018</p>
+            </div>
+            <!--div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item mr-3">
+                  <a href="#">
+                    <i class="fa fa-facebook fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item mr-3">
+                  <a href="#">
+                    <i class="fa fa-twitter fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-instagram fa-2x fa-fw"></i>
+                  </a>
+                </li>
+              </ul>
+            </div-->
         </div>
-      </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
 
-    <script type="text/javascript">
-      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-          event.preventDefault();
-          $(this).ekkoLightbox();
-      });
-    </script>
+<script type="text/javascript">
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+</script>
 
-  </body>
+<!-- Application -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script data-main="static/app/init.js" src="/static/lib/require.js"></script>
+
+</body>
 
 </html>

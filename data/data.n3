@@ -1,0 +1,115 @@
+@base <http://antroporama.iolanta.tech/> .
+@prefix : <http://antroporama.iolanta.tech/> .
+@prefix media: <http://antroporama.iolanta.tech/media/> .
+
+@prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+<http://antroporama.iolanta.tech> rdfs:label "Antroporama" ;
+    rdfs:comment "Кратко об эволюции человека" .
+
+
+:Credit a rdfs:Class ;
+    rdfs:label "Credit" ;
+    rdfs:comment "The source/author of work we are using" .
+
+
+:Image a rdfs:Class ;
+    rdfs:label "Image" ;
+    rdfs:comment "An image with its credit" .
+
+
+:credit a rdfs:Property ;
+    rdfs:label "Credits" ;
+    rdfs:range :Credit .
+
+
+:Species a rdfs:Class ;
+    rdfs:label "A biological species" .
+
+
+:TimeRange a rdfs:Class ;
+    rdfs:label "A time range" .
+
+
+:time-range a rdfs:Property ;
+    rdfs:domain :Species ;
+    rdfs:range :TimeRange .
+
+
+:Brain a rdfs:Class ;
+    rdfs:label "Объём мозга" .
+
+
+:min-volume a rdfs:Property ;
+    rdfs:domain :Brain ;
+    rdfs:range xsd:integer .
+
+
+:max-volume a rdfs:Property ;
+    rdfs:domain :Brain ;
+    rdfs:range xsd:integer .
+
+
+:header a :Image ;
+    :href <media/illustrations/savannah_at_dawn_lurssen.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Jean Lurssen" ;
+        rdfs:seeAlso <http://the-watercolorist.blogspot.ru/2011/05/savannah-dawn.html>
+    ] .
+
+:footer a :Image ;
+    :href <media/illustrations/space_engine_landscape.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Space Engine Project" ;
+        rdfs:seeAlso <http://spaceengine.org>
+    ] .
+
+:human_from_clay a :Image ;
+    :href <media/illustrations/human_from_clay.jpg> ;
+    :credit [
+        a :Credit ;
+        rdfs:label "Mark Wiley" ;
+        rdfs:seeAlso <http://www.dpchallenge.com/image.php?IMAGE_ID=1052201>
+    ] .
+
+
+:ows a :Credit ;
+    rdfs:label "Roman Yevseyev" ;
+    rdfs:seeAlso <http://other-worlds.ru/> .
+
+
+:proconsul a :Species ;
+    rdfs:label "Проконсул" ;
+    :scientific-name "Proconsul heseloni" ;
+    :image [
+        :href <media/species/proconsul.jpg> ;
+        :credit :ows
+    ] ;
+
+    :time-range [
+        a :TimeRange ;
+        :from -18000000 ;
+        :to -15000000
+    ] ;
+
+    :location "Восточная Африка" ;
+    :content "species/proconsul.html" ;
+
+    :walking :four-footed ;
+    :hand :monkey-hand ;
+    :brain [
+        a :Brain ;
+        :min-volume 305 ;
+        :max-volume 320
+    ] ;
+
+    :environment :forest ;
+    :food :fruit ;
+    :food :leaves .
