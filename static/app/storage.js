@@ -8,7 +8,10 @@ define(['rdfstore'], function(rdfstore) {
                             console.log('Error loading data:', err);
                         }
 
-                        callback(store);
+                        // Hack!
+                        window.storage = store;
+
+                        callback();
                     });
                 })
             });
