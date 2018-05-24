@@ -64,8 +64,6 @@ Vue.component('header-banner', {
             // Turn the component on
             app.is_visible = true;
         });
-
-
     },
 
     template: `
