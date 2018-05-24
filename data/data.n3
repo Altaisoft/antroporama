@@ -80,6 +80,20 @@
     ] .
 
 
+:introduction :image :human_from_clay ;
+    rdfs:label "Откуда мы?" ;
+    rdfs:comment '''
+        <p class="lead">У каждого народа и в каждой культуре есть какой-нибудь миф, объясняющий происхождение человека, что говорит о давнем интересе людей к этому вопросу.</p>
+
+        <ul>
+            <li>Многие народы считали, что первочеловек был слеплен из глины,</li>
+            <li>или выбрался из-под земли,</li>
+            <li>или спустился с неба по верёвке,</li>
+            <li>или <a href="https://www.youtube.com/watch?v=BPE_eQhj3vI">ещё каким-то образом</a> появился в этом мире.</li>
+        </ul>
+    ''' .
+
+
 :ows a :Credit ;
     rdfs:label "Roman Yevseyev" ;
     rdfs:seeAlso <http://other-worlds.ru/> .

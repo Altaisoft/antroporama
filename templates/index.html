@@ -56,21 +56,12 @@
 
 <body>
 {% raw %}
-    <div id="app">
-        <header-banner></header-banner>
-    </div>
+<div id="app">
+    <header-banner></header-banner>
+    <introduction></introduction>
+</div>
 {% endraw %}
 
-
-<section class="showcase">
-    <div class="container-fluid p-0">
-        {% with %}
-            {% set item = human_from_clay %}
-            {% set even = True %}
-            {% include "human_from_clay.html" %}
-        {% endwith %}
-    </div>
-</section>
 
 <section class="holmes">
     <div class="container pb-5 pt-5">
@@ -245,7 +236,12 @@
 
 <!-- Application -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- Components -->
+<script type="text/javascript" src="/static/app/showcase.js"></script>
 <script type="text/javascript" src="/static/app/header.js"></script>
+<script type="text/javascript" src="/static/app/introduction.js"></script>
+
 <script data-main="static/app/init.js" src="/static/lib/require.js"></script>
 
 </body>
