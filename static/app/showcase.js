@@ -1,24 +1,26 @@
 Vue.component('showcase', {
     props: ['node'],
+
+    query: `
+        PREFIX : <http://antroporama.iolanta.tech/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        
+        SELECT ?href ?author ?seeAlso
+        WHERE {
+            ?node :href ?href .
+            ?node :credit ?credit .
+        
+            ?credit a :Credit .
+            ?credit rdfs:label ?author .
+            ?credit rdfs:seeAlso ?seeAlso .
+            FILTER(?node = {{ node }})
+        }
+    `,
+
     data: function() {
         return {
             image: null,
-            is_visible: false,
-            query: `
-                PREFIX : <http://antroporama.iolanta.tech/>
-                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                
-                SELECT ?href ?author ?seeAlso
-                WHERE {
-                    ?node :href ?href .
-                    ?node :credit ?credit .
-                
-                    ?credit a :Credit .
-                    ?credit rdfs:label ?author .
-                    ?credit rdfs:seeAlso ?seeAlso .
-                    FILTER(?node = :human_from_clay)
-                }
-            `
+            is_visible: false
         }
     },
 
@@ -29,9 +31,10 @@ Vue.component('showcase', {
     },
 
     created: function () {
-        var app = this;
+        var app = this,
+            q = this.$options.query.replace('{{ node }}', this.node);
 
-        window.storage.execute(this.query, function(err, results) {
+        window.storage.execute(q, function(err, results) {
             var result = results[0];
 
             app.image = {

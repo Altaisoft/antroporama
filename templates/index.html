@@ -59,15 +59,11 @@
 <div id="app">
     <header-banner></header-banner>
     <introduction></introduction>
+    <text-banner node=":holmes"></text-banner>
+
+    <species node=":proconsul" image-position="right"></species>
 </div>
 {% endraw %}
-
-
-<section class="holmes">
-    <div class="container pb-5 pt-5">
-        {% include "content/intro.html" %}
-    </div>
-</section>
 
 <!-- Species -->
 <section class="showcase">
@@ -238,6 +234,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <!-- Components -->
+<script type="text/javascript" src="/static/app/species.js"></script>
+<script type="text/javascript" src="/static/app/banner.js"></script>
 <script type="text/javascript" src="/static/app/showcase.js"></script>
 <script type="text/javascript" src="/static/app/header.js"></script>
 <script type="text/javascript" src="/static/app/introduction.js"></script>

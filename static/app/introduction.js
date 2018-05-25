@@ -1,27 +1,28 @@
 Vue.component('introduction', {
+    query: `
+        PREFIX : <http://antroporama.iolanta.tech/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        
+        SELECT ?title ?content
+        WHERE {
+            ?node rdfs:label ?title .
+            ?node rdfs:comment ?content .
+        
+            FILTER(?node = :introduction)
+        }
+    `,
+
     data: function() {
         return {
             title: null,
             content: null,
-            query: `
-                PREFIX : <http://antroporama.iolanta.tech/>
-                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                
-                SELECT ?title ?content
-                WHERE {
-                    ?node rdfs:label ?title .
-                    ?node rdfs:comment ?content .
-                
-                    FILTER(?node = :introduction)
-                }
-            `,
         };
     },
 
     created: function () {
         var app = this;
 
-        window.storage.execute(this.query, function(err, results) {
+        window.storage.execute(this.$options.query, function(err, results) {
             var result = results[0];
             app.title = result.title.value;
             app.content = result.content.value;
