@@ -24,7 +24,10 @@ Vue.component('species', {
     data: function() { return {
         title: null,
         subtitle: null,
-        time: null,
+
+        time_from: null,
+        time_to: null,
+
         place: null,
 
         description: null,
@@ -41,20 +44,36 @@ Vue.component('species', {
 
             console.log(result);
 
+            app.title = result.title.value;
+            app.subtitle = result.subtitle.value;
+            app.time_from = result.time_to.value;
+            app.time_to = result.time_from.value;
+            app.place = result.place.value;
+            app.description = result.description.value;
+
             // Turn the component on
             app.is_visible = true;
+
+            console.log(app);
         });
     },
 
     template: `
-        <div class="row no-gutters">
-          <!--div class="col-lg-6 text-white showcase-img{% if even %} order-lg-2{% endif %}" style="background-image: url('{{ item.image.href or '/media/' + item.image.filename }}');">
-            {{ macros.source(item.image.author, 'pull-right') }}
-          </div-->
-        
-          <div class="col-lg-6 my-auto showcase-text">
-            Something
-          </div>
-        </div>    
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                    <showcase node=":proconsul-photo"></showcase>
+                    
+                    <div class="col-lg-6 my-auto showcase-text">
+                        <h2>{{ title }}<br/><small class="text-muted">{{ subtitle }}</small></h2>
+                        
+                        <p class="lead mb-0"><strong>Время:</strong> {{ time_from }} ... {{ time_to }}</p>
+                        <p class="lead"><strong>Место:</strong> {{ place }}</p>
+                        
+                        <div v-html="description"></div>
+                    </div>
+                </div>             
+            </div>
+        </section>
     `
 });

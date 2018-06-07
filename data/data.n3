@@ -112,13 +112,15 @@
     rdfs:seeAlso <http://other-worlds.ru/> .
 
 
+:proconsul-photo a :Image ;
+    :href <media/species/proconsul.jpg> ;
+    :credit :ows .
+
+
 :proconsul a :Species ;
     rdfs:label "Проконсул" ;
     :scientific-name "Proconsul heseloni" ;
-    :image [
-        :href <media/species/proconsul.jpg> ;
-        :credit :ows
-    ] ;
+    :image :proconsul-photo ;
 
     :time-range [
         a :TimeRange ;
