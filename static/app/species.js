@@ -42,8 +42,6 @@ Vue.component('species', {
         window.storage.execute(q, function(err, results) {
             var result = results[0];
 
-            console.log(result);
-
             app.title = result.title.value;
             app.subtitle = result.subtitle.value;
             app.time_from = result.time_to.value;
@@ -71,6 +69,8 @@ Vue.component('species', {
                         <p class="lead"><strong>Место:</strong> {{ place }}</p>
                         
                         <div v-html="description"></div>
+                        
+                        <properties node=":proconsul"></properties>
                     </div>
                 </div>             
             </div>

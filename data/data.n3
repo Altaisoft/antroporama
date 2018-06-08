@@ -117,6 +117,30 @@
     :credit :ows .
 
 
+:SpeciesProperty rdfs:subPropertyOf rdfs:Property ;
+    rdfs:domain :Species .
+
+
+:walking a :SpeciesProperty ;
+    rdfs:range :Walking .
+
+:Walking a rdfs:Class .
+
+:four-footed a :Walking ;
+    :href <media/features/bipedal_monkey.png> ;
+    rdfs:label "На четвереньках" .
+
+
+:Hand a rdfs:Class .
+
+:hand a :SpeciesProperty ;
+    rdfs:range :Hand .
+
+:monkey-hand a :Hand ;
+    :href <media/features/monkey_foot.png> ;
+    rdfs:label "Обезьянья лапа" .
+
+
 :proconsul a :Species ;
     rdfs:label "Проконсул" ;
     :scientific-name "Proconsul heseloni" ;
