@@ -41,7 +41,7 @@
     rdfs:range :TimeRange .
 
 
-:Brain a rdfs:Class ;
+:Brain rdfs:subClassOf :SpeciesProperty ;
     rdfs:label "Объём мозга" .
 
 
@@ -55,29 +55,30 @@
     rdfs:range xsd:integer .
 
 
+<credits/lurssen> a :Credit ;
+    rdfs:label "Jean Lurssen" ;
+    rdfs:seeAlso <http://the-watercolorist.blogspot.ru/2011/05/savannah-dawn.html> .
+
+
 :header a :Image ;
     :href <media/illustrations/savannah_at_dawn_lurssen.jpg> ;
-    :credit [
-        a :Credit ;
-        rdfs:label "Jean Lurssen" ;
-        rdfs:seeAlso <http://the-watercolorist.blogspot.ru/2011/05/savannah-dawn.html>
-    ] .
+    :credit <credits/lurssen> .
+
+<credits/space-engine> a :Credit ;
+    rdfs:label "Space Engine Project" ;
+    rdfs:seeAlso <http://spaceengine.org> .
 
 :footer a :Image ;
     :href <media/illustrations/space_engine_landscape.jpg> ;
-    :credit [
-        a :Credit ;
-        rdfs:label "Space Engine Project" ;
-        rdfs:seeAlso <http://spaceengine.org>
-    ] .
+    :credit <credits/space-engine> .
+
+<credits/wiley> a :Credit ;
+    rdfs:label "Mark Wiley" ;
+    rdfs:seeAlso <http://www.dpchallenge.com/image.php?IMAGE_ID=1052201> .
 
 :human_from_clay a :Image ;
     :href <media/illustrations/human_from_clay.jpg> ;
-    :credit [
-        a :Credit ;
-        rdfs:label "Mark Wiley" ;
-        rdfs:seeAlso <http://www.dpchallenge.com/image.php?IMAGE_ID=1052201>
-    ] .
+    :credit <credits/wiley> .
 
 
 :introduction :image :human_from_clay ;
@@ -127,9 +128,8 @@
 :Walking a rdfs:Class .
 
 :four-footed a :Walking ;
-    :href <media/features/bipedal_monkey.png> ;
+    :href <media/features/monkey.png> ;
     rdfs:label "На четвереньках" .
-
 
 :Hand a rdfs:Class .
 
@@ -141,27 +141,57 @@
     rdfs:label "Обезьянья лапа" .
 
 
+<time/proconsul> a :TimeRange ;
+    :from -18000000 ;
+    :to -15000000 .
+
+<brain/proconsul> a :Brain ;
+    :min-volume 305 ;
+    :max-volume 320 ;
+
+    rdfs:label "305...320 см³" ;
+    :href <media/features/brain.png> .
+
+:Environment a rdfs:Class .
+
+:environment a :SpeciesProperty ;
+    rdfs:range :Environment .
+
+:forest a :Environment ;
+    :href <media/features/monkey_on_tree.png> ;
+    rdfs:label "Деревья" .
+
+
+:Food a rdfs:Class .
+
+:food a :SpeciesProperty ;
+    rdfs:range :Food .
+
+:fruit a :Food ;
+    :href <media/features/fruit.png> ;
+    rdfs:label "Фрукты" .
+
+:leaves a :Food ;
+    :href <media/features/leaf.png> ;
+    rdfs:label "Листья" .
+
+
+:brain a :SpeciesProperty ;
+    rdfs:range :Brain .
+
+
 :proconsul a :Species ;
     rdfs:label "Проконсул" ;
     :scientific-name "Proconsul heseloni" ;
     :image :proconsul-photo ;
 
-    :time-range [
-        a :TimeRange ;
-        :from -18000000 ;
-        :to -15000000
-    ] ;
+    :time-range <time/proconsul> ;
 
     :location "Восточная Африка" ;
-    :content "species/proconsul.html" ;
 
     :walking :four-footed ;
     :hand :monkey-hand ;
-    :brain [
-        a :Brain ;
-        :min-volume 305 ;
-        :max-volume 320
-    ] ;
+    :brain <brain/proconsul> ;
 
     :environment :forest ;
     :food :fruit ;

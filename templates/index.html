@@ -68,7 +68,7 @@
 <!-- Species -->
 <section class="showcase">
     <div class="container-fluid p-0">
-        {% for item in species[:3] %}
+        {% for item in species[2:3] %}
             {% with %}
                 {% set even = loop.index is divisibleby 2 %}
                 {% include "species.html" %}

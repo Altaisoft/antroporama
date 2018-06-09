@@ -32,7 +32,9 @@ Vue.component('properties', {
     template: `
         <section v-if="is_visible" class="text-center properties">
             <div class="container">
-                <property v-for="item in properties" :node="item" :key="item"></property>
+                <div class="row">
+                    <property v-for="item in properties" :node="item" :key="item"></property>
+                </div>
             </div>
         </section>
     `
